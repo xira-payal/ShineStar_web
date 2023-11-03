@@ -30,7 +30,7 @@ def loginPage(request):
 
     return render(request, 'backend-template/login.html')
 
-@login_required(login_url='/login')
+@login_required(login_url='b_login')
 def homePage(request):
     username = request.user.username
     context = { 'username' : username }
@@ -50,7 +50,7 @@ def registerPage(request):
             if password == confirm_password:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
-                return redirect('login')
+                return redirect('b_login')
             else:
                messages.error(request, 'Password Not Match')
         except ValidationError as e:
