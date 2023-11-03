@@ -1,0 +1,100 @@
+{% extends "backend-template/base.html" %} 
+{% block title %}AddCarrer Page{% endblock%}
+
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-lg-12 col-md-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                        <span aria-hidden="true"><i class="fe fe-x-circle"></i></span></button>
+                        <strong>Your message :</strong> {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %} 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Firstname</p>
+                                    <input type="text" class="form-control" name="firstname" value="" placeholder="Firstname">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Lastname</p>
+                                    <input type="text" class="form-control" name="lastname" placeholder="Lastaname">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Email</p>
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Phone</p>
+                                    <input type="number" class="form-control" name="phone" placeholder="Phone">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Education</p>
+                                    <input type="text" class="form-control" name="education" placeholder="Education">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Experiance</p>
+                                    <input type="text" class="form-control" name="experiance" placeholder="experiance">
+                                </div> 
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-0">
+                                    <p class="mg-b-10">Message</p>
+                                    <textarea class="form-control" name="message" rows="4" placeholder="Message..."></textarea>
+                                </div>
+                            </div>  
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-0">
+                                    <p class="mg-b-10">Address</p>
+                                    <textarea class="form-control" name="address" rows="4" placeholder="Addresss..."></textarea>
+                                </div>
+                            </div> 
+                            <div class="col-lg-12 col-md-12 mt-4">
+                                <p class="mg-b-20">Select Your Files</p>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="input-group file-browser">
+                                            <input type="text" class="form-control border-right-0 browse-file" placeholder="choose" readonly>
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary">
+                                                    Browse <input type="file" name="files" style="display: none;"multiple>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>                       
+                            <div class="col-lg-12 col-md-12 d-flex  justify-content-end mt-5">
+                                <div class="form-group d-flex row justify-content-end mb-0 mx-5">
+                                        <button class="btn ripple btn-primary pd-x-30 mg-r-5">Save</button>
+                                 </div>
+                                <div class="form-group d-flex row justify-content-end mb-0">
+                                        <button onclick="window.history.back()" class="btn ripple btn-secondary pd-x-30">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
