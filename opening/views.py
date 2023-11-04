@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from .models import Country 
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
 # Validation Sections
@@ -13,6 +14,9 @@ def Required(value,field_name):
         raise ValidationError(f'{field_name} is required')
 # End Validation Sections
 
+
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def opening_page(request):
     opening = Opening.objects.all()
     paginator = Paginator(opening, 4) 
@@ -20,6 +24,9 @@ def opening_page(request):
     page_obj = paginator.get_page(page_number)
     return render(request,'backend-template/opening.html',{'page_obj':page_obj})
 
+
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def add_opening_page(request):
     if request.method == 'POST':
         position = request.POST.get('position')
@@ -49,6 +56,9 @@ def add_opening_page(request):
     countries = Country.objects.all()
     return render(request, 'backend-template/opening_add.html',{'countries':countries})
 
+
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def update_opening_page(request, pk):
     try:
         opening = Opening.objects.get(pk=pk)

@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login , logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 
@@ -22,50 +22,24 @@ def loginPage(request):
 
             user = authenticate(request, username=username, password=password)
 
-            if user is not None:
+            if user is not None and user.is_superuser:
                 login(request, user)
                 return redirect('home')
+            else:
+                messages.error(request, 'Only Super Admins can log in.')
         except ValidationError as e:
             messages.error(request, str(e))
 
     return render(request, 'backend-template/login.html')
 
-@login_required(login_url='b_login')
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superadmin)
 def homePage(request):
     username = request.user.username
     context = { 'username' : username }
     return render(request, 'backend-template/contact.html',context)
 
-def registerPage(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-        try:
-            Required(username,'username')
-            Required(email,'emil')
-            Required(password,'password')
-            Required(confirm_password,'confirm_password')
-            if password == confirm_password:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
-                return redirect('b_login')
-            else:
-               messages.error(request, 'Password Not Match')
-        except ValidationError as e:
-            messages.error(request, str(e))
-
-    return render(request, 'backend-template/register.html')
-
-def forgotPassword(request):
-    if request.method == 'POST':
-      username = request.POST.get('username')
-      email = request.POST.get('email')
-      password = request.POST.get('password')
-    return render(request, 'backend-template/forgotPassword.html')
-
 def logoutPage(request):
     logout(request)
-    return redirect('home')
+    return redirect('admin_home')
 

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 import os
 # Create your views here.
 
@@ -18,7 +19,8 @@ def Validate_img_extension(value):
          raise ValidationError(f'Only JPG, JPEG, PNG, or GIF files are allowed.')
 # End Validation Sections
 
-
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def blog_page(request):
     blogs = Blogs.objects.all()
     paginator = Paginator(blogs, 4) 
@@ -26,6 +28,8 @@ def blog_page(request):
     page_obj = paginator.get_page(page_number)
     return render(request,'backend-template/blog.html', {'page_obj': page_obj})
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def add_blog_page(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -46,6 +50,8 @@ def add_blog_page(request):
         pass
     return render(request,'backend-template/blog_add.html')
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def update_blog_page(request, pk):
     if pk == pk:
         try:
@@ -80,7 +86,3 @@ def delete_blog_page(request, pk):
     blog = Blogs.objects.get(pk=pk)
     blog.delete()
     return redirect('blog')
-
-def go_back(request):
-    previous_url = request.META.get('HTTP_REFERER')
-    return redirect(previous_url)

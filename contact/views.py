@@ -3,6 +3,7 @@ from .models import Contact
 from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
 # Validation Sections
@@ -10,7 +11,8 @@ def Required(value,field_name):
     if value == '':
         raise ValidationError(f'{field_name} is required')
 # End Validation Sections
-
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def contact_page(request):
     contact = Contact.objects.all()
     paginator = Paginator(contact, 4) 
@@ -18,6 +20,8 @@ def contact_page(request):
     page_obj = paginator.get_page(page_number)
     return render(request,'backend-template/contact.html',{'page_obj':page_obj})
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def add_contact_page(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -36,6 +40,8 @@ def add_contact_page(request):
             messages.error(request,str(e))
     return render(request,'backend-template/contact_add.html')
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def update_contact_page(request, pk):
     if pk == pk:
         try:
@@ -64,6 +70,7 @@ def update_contact_page(request, pk):
         pass
 
     return render(request, 'backend-template/contact_update.html', {'contact': contact})
+
 
 def delete_contact_page(request, pk):
     contact = Contact.objects.get(pk=pk)

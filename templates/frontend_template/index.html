@@ -33,7 +33,7 @@
                     </h1>
                     <p>Contact us today to learn more.</p>
                     <div class="btn-box">
-                      <a href="#" class="theme-btn-two">CONTACT</a>
+                      <a href="{% url 'front-contact' %}" class="theme-btn-two">CONTACT</a>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
                     </h1>
                     <p>Get a free consultation today.</p>
                     <div class="btn-box">
-                      <a href="#" class="theme-btn-two">Learn More</a>
+                      <a href="{% url 'front-about' %}" class="theme-btn-two">Learn More</a>
                     </div>
                   </div>
                 </div>
@@ -162,13 +162,14 @@
                                                           {% for position in positions %}
                                                               <tr class="masonry-item small-column all {{position.location}}">
                                                                   <td data-th="Sr. No.">
-                                                                      0{{position.id}}
+                                                                      {{position.id}}
                                                                   </td>
                                                                   <td data-th="Position">
                                                                       {{position.position}}
                                                                   </td>
                                                                   <td data-th="Vacancy">
-                                                                      {{position.vacancy}}
+                                                                    {{position.vaccancy}}
+                                                                  
                                                                   </td>
                                                                   <td data-th="Salary (Rs)">
                                                                       {{position.salary}}
@@ -573,7 +574,7 @@
               – A PERFECT MATCH !
             </h2>
             <div class="btn-box">
-              <a href="#!" class="btn-two">Apply Now</a>
+              <a href="{% url 'front-register' %}" class="btn-two">Apply Now</a>
             </div>
           </div>
         </div>

@@ -59,8 +59,8 @@
                 <i class="flaticon-email"></i>
                 <p>
                   <span>Mail : </span
-                  ><a href="mailto:salimtyagi786@gmail.com"
-                    >salimtyagi786@gmail.com</a
+                  ><a href="mailto:info.shine001@gmail.com"
+                    >info.shine001@gmail.com</a
                   >
                 </p>
               </li>
@@ -73,9 +73,6 @@
                 <li>
                   <a href="#"><i class="fab fa-twitter"></i></a>
                 </li>
-                <!-- <li>
-                  <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                </li> -->
                 <li>
                   <a href="#"><i class="fab fa-youtube"></i></a>
                 </li>
@@ -87,7 +84,7 @@
           <div class="outer-box clearfix">
             <div class="menu-area pull-left clearfix">
               <figure class="logo-box">
-                <a href="#"><img src="{% static 'front_front_assets/images/logo.png' %}" alt="" /></a>
+                <a href="#"><img src="{% static 'front_assets/images/logo.png' %}" alt="" /></a>
               </figure>
               <!--Mobile Navigation Toggler-->
               <div class="mobile-nav-toggler">
@@ -101,12 +98,12 @@
                   id="navbarSupportedContent"
                 >
                   <ul class="navigation clearfix">
-                    <li><a href="{% url 'Front_Home' %}">Home</a></li>
-                    <li><a href="{% url 'Front_about' %}">ABOUT</a></li>
-                    <li><a href="{% url 'Front_carrer' %}">CAREER</a></li>
-                    <li><a href="{% url 'Front_opening' %}">CURRENT OPENINGS</a></li>
+                    <li><a href="{% url 'front-home' %}">Home</a></li>
+                    <li><a href="{% url 'front-about' %}">ABOUT</a></li>
+                    <li><a href="{% url 'front-carrer' %}">CAREER</a></li>
+                    <li><a href="{% url 'front-opening' %}">CURRENT OPENINGS</a></li>
                     <li><a href="#!">Blogs</a></li>
-                    <li><a href="{% url 'Front_contact' %}">CONTACT</a></li>
+                    <li><a href="{% url 'front-contact' %}">CONTACT</a></li>
                   </ul>
                 </div>
               </nav>
@@ -115,10 +112,16 @@
               <li>
                 <a id="google_translate_element"></a>
               </li>
+              {% if user.is_authenticated %}
               <li>
-                <a href="{% url 'Front_login' %}" class="theme-btn-one">sign-in</a>
-                <a href="{% url 'Front_register' %}" class="theme-btn-one">sign-up</a>
+                <a href="{% url 'front-logout' %}" class="theme-btn-one">logout</a>
               </li>
+              {% else %}
+              <li>
+                <a href="{% url 'front-login' %}" class="theme-btn-one">sign-in</a>
+                <a href="{% url 'front-register' %}" class="theme-btn-one">sign-up</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -128,16 +131,22 @@
           <div class="outer-box clearfix">
             <div class="menu-area pull-left">
               <figure class="logo-box">
-                <a href="#"><img src="{% static 'front_front_assets/images/logo.png' %}" alt="" /></a>
+                <a href="#"><img src="{% static 'front_assets/images/logo.png' %}" alt="" /></a>
               </figure>
               <nav class="main-menu clearfix">
               </nav>
             </div>
             <ul class="menu-right-content pull-right clearfix">
+              {% if user.is_authenticated %}
               <li>
-                <a href="#" class="theme-btn-one">sign-in</a>
-                <a href="#" class="theme-btn-one">sign-up</a>
+                <a href="{% url 'front-logout' %}" class="theme-btn-one">logout</a>
               </li>
+              {% else %}
+              <li>
+                <a href="{% url 'front-login' %}" class="theme-btn-one">sign-in</a>
+                <a href="{% url 'front-register' %}" class="theme-btn-one">sign-up</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -164,8 +173,8 @@
               </li>
               <li><a href="tel:9458747374">945-874-7374</a></li>
               <li>
-                <a href="mailto:salimtyagi786@gmail.com"
-                  >salimtyagi786@gmail.com</a
+                <a href="mailto:info.shine001@gmail.com"
+                  >info.shine001@gmail.com</a
                 >
               </li>
             </ul>
@@ -241,12 +250,12 @@
                       <h3>Useful Links</h3>
                     </div>
                     <ul class="links-list clearfix">
-                      <li><a href="{% url 'Front_Home' %}">Home</a></li>
-                      <li><a href="{% url 'Front_about' %}">ABOUT</a></li>
-                      <li><a href="{% url 'Front_carrer' %}">CAREER</a></li>
-                      <li><a href="{% url 'Front_opening' %}">CURRENT OPENINGS</a></li>
+                      <li><a href="{% url 'front-home' %}">Home</a></li>
+                      <li><a href="{% url 'front-about' %}">ABOUT</a></li>
+                      <li><a href="{% url 'front-carrer' %}">CAREER</a></li>
+                      <li><a href="{% url 'front-opening' %}">CURRENT OPENINGS</a></li>
                       <li><a href="#!">Blogs</a></li>
-                      <li><a href="{% url 'Front_contact' %}">CONTACT</a></li>
+                      <li><a href="{% url 'front-contact' %}">CONTACT</a></li>
                     </ul>
                   </div>
                 </div>
@@ -265,8 +274,8 @@
                           </a>
                         </li>
                         <li>
-                          <a href="mailto:salimtyagi786@gmail.com"
-                            >salimtyagi786@gmail.com</a
+                          <a href="mailto:info.shine001@gmail.com"
+                            >info.shine001@gmail.com</a
                           >
                         </li>
                         <li><a href="tel:9458747374">+91-945-874-7374</a></li>

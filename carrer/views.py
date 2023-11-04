@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 import os
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
 # Validation Sections
@@ -17,7 +18,8 @@ def validate_file_extension(value):
     if ext.lower() not in allowed_extension:
          raise ValidationError(f'Only PDF, DOC, DOCX, TXT, or ODT files are allowed.')
 # End Validation Sections
-
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def carrer_page(request):
     carrer = Carrer.objects.all()
     paginator = Paginator(carrer, 4) 
@@ -25,6 +27,8 @@ def carrer_page(request):
     page_obj = paginator.get_page(page_number)
     return render(request,'backend-template/carrer.html',{'page_obj':page_obj})
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def add_carrer_page(request):
     if request.method == 'POST':
         firstname = request.POST.get('firstname')
@@ -48,6 +52,8 @@ def add_carrer_page(request):
             messages.error(request,str(e))
     return render(request,'backend-template/carrer_add.html')
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def update_carrer_page(request, pk):
     if pk == pk:
         try:
@@ -96,7 +102,3 @@ def delete_carrer_page(request,pk):
     carrer = Carrer.objects.get(pk=pk)
     carrer.delete()
     return redirect('carrer')
-
-def go_back(request):
-     previous_url = request.META.get('HTTP_REFERER')
-     return redirect(previous_url,'blog')

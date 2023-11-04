@@ -34,8 +34,19 @@
       <!-- contactinfo-section -->
       <section class="contactinfo-section contact-page-section">
         <div class="auto-container">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong>Your message :</strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+        {% endif %}
           <div class="row clearfix">
-            <div class="col-lg-4 col-md-12 col-sm-12 content-column">
+            
+            <div class="col-lg-4 col-md-12 col-sm-12 content-column">  
               <div id="content_block_6">
                 <div class="content-box">
                   <div class="sec-title">

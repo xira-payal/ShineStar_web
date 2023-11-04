@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 import os
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
 # Validation Sections
@@ -18,6 +19,8 @@ def Validate_img_extension(value):
          raise ValidationError(f'Only JPG, JPEG, PNG, or GIF files are allowed.')
 # End Validation Sections
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def country_page(request):
     country = Country.objects.all()
     paginator = Paginator(country, 4) 
@@ -25,6 +28,8 @@ def country_page(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'backend-template/country.html',{'page_obj':page_obj})
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def add_country_page(request):
         if request.method == 'POST':
             name = request.POST.get('name')
@@ -42,6 +47,8 @@ def add_country_page(request):
 
         return render(request, 'backend-template/country_add.html')
 
+@login_required
+@user_passes_test(lambda user: user.is_superadmin)
 def update_country_page(request, pk):
     if pk == pk:
         try:

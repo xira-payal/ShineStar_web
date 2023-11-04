@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'contact',
     'carrer',
     'opening',
-    'country'
+    'country',
 ]
 
 MIDDLEWARE = [
