@@ -19,17 +19,17 @@ def Validate_img_extension(value):
          raise ValidationError(f'Only JPG, JPEG, PNG, or GIF files are allowed.')
 # End Validation Sections
 
-@login_required
-@user_passes_test(lambda user: user.is_superadmin)
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def blog_page(request):
     blogs = Blogs.objects.all()
-    paginator = Paginator(blogs, 4) 
+    paginator = Paginator(blogs, 8) 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request,'backend-template/blog.html', {'page_obj': page_obj})
+    return render(request,'cms/blog.html', {'page_obj': page_obj})
 
-@login_required
-@user_passes_test(lambda user: user.is_superadmin)
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def add_blog_page(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -42,16 +42,17 @@ def add_blog_page(request):
             Validate_img_extension(image)
             blogs = Blogs(title=title,image=image,content=content)
             blogs.save()
+            messages.success(request, "Blog added successfully")
             return redirect('blog')
         
         except ValidationError as e:
             messages.error(request,str(e))
     else:
         pass
-    return render(request,'backend-template/blog_add.html')
+    return render(request,'cms/blog_add.html')
 
-@login_required
-@user_passes_test(lambda user: user.is_superadmin)
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def update_blog_page(request, pk):
     if pk == pk:
         try:
@@ -72,17 +73,23 @@ def update_blog_page(request, pk):
                 blog.title = title
                 blog.content = content
                 blog.save()
+                messages.info(request, "Blog Updated successfully")
                 return redirect('blog')
             else:
                 blog = Blogs.objects.create(pk=pk, title=title, image=image, content=content)
                 blog.save()
+                messages.info(request, "Blog Updated successfully")
                 return redirect('blog')
     else:
         pass
 
-    return render(request, 'backend-template/blog_update.html', {'blogs': blog})
+    return render(request, 'cms/blog_update.html', {'blogs': blog})
 
+
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def delete_blog_page(request, pk):
     blog = Blogs.objects.get(pk=pk)
     blog.delete()
+    messages.warning(request, "Blog deleted successfully")
     return redirect('blog')

@@ -3756,11 +3756,11 @@ div#mCSB_1_container {
   position: absolute;
   right: 0px;
   top: 30px;
-  width: 70px;
-  height: 70px;
+  width: 112px;
+  height: 40px;
   line-height: 22px;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
   font-weight: 700;
   text-transform: uppercase;
@@ -4229,10 +4229,12 @@ footer .footer-top .widget-section .footer-widget img {
   margin-bottom: 5px;
 }
 
+
+
 .footer-top .links-widget .links-list li a {
   position: relative;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 25px;
   color: #222;
   font-weight: 500;

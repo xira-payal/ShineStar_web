@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.utils.translation import gettext_lazy as _
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -15,7 +16,6 @@ SECRET_KEY = 'django-insecure-wp2p0d%dics8w*quuu0x8o0*8k3wy4%2)64ugh(dq+_1%!pfhk
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'carrer',
     'opening',
     'country',
+    'frontend',
 ]
 
 MIDDLEWARE = [
@@ -49,14 +50,14 @@ ROOT_URLCONF = 'sinestar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        "DIRS": [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -75,7 +76,9 @@ DATABASES = {
     }
 }
 
-
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),  # Replace 'locale' with the actual directory name
+]
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -104,9 +107,17 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
+LANGUAGES = [
+    ('en', _('English')),
+    ('ar', _('Arabic')),
+    # Add more languages as needed
+]
 
+LANGUAGE_CODE = 'en'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 

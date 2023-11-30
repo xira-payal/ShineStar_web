@@ -1,0 +1,171 @@
+{% extends "web/base.html" %} 
+{% load static %}
+{% block title %}Contact Page{% endblock%}
+
+{% block content %}
+
+      <!--Page Title-->
+      <section
+        class="page-title pb-0"
+        style="background-image: url({% static 'front_assets/images/background/page-title-2.jpg' %})"
+      >
+        <div
+          class="pattern-layer"
+          style="background-image: url({% static 'front_assets/images/shape/pattern-35.png' %})"
+        ></div>
+        <div class="auto-container">
+          <div class="content-box">
+            <div class="title-box centred">
+              <h1>CONTACT</h1>
+              <ul class="bread-crumb clearfix">
+                <li><a href="index.html">Home</a></li>
+                <li>CONTACT</li>
+              </ul>
+              <!-- <p>Your Staffing Needs are Unique and Always Evolving</p> -->
+            </div>
+            <div class="bg-shape"></div>
+          </div>
+        </div>
+      </section>
+      <!--End Page Title-->
+      
+      
+
+      <!-- contactinfo-section -->
+      <section class="contactinfo-section contact-page-section">
+        <div class="auto-container">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show " role="alert">
+                <strong>Your message :</strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+        {% endif %}
+          <div class="row clearfix">
+            
+            <div class="col-lg-4 col-md-12 col-sm-12 content-column">  
+              <div id="content_block_6">
+                <div class="content-box">
+                  <div class="sec-title">
+                    <span class="top-title">let's</span>
+                    <h2>GET IN TOUCH</h2>
+                    <p>
+                        Contact Us to Transform Your Ideas into Reality
+                    </p>
+                  </div>
+                  <ul class="info-list clearfix">
+                    <li>
+                      <figure class="icon-box">
+                        <img src="{% static 'front_assets/images/icons/icon-39.png' %}" alt="" />
+                      </figure>
+                      <div class="inner">
+                        <h4>Location</h4>
+                        <p>
+                            Ozone Biz Center, Office No. 501, 5th Floor, Bellasis Road, Next To Maharashtra College, Mumbai - Central, Mumbai - Maharashtra - 400008
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <figure class="icon-box">
+                        <img src="{% static 'front_assets/images/icons/icon-40.png' %}" alt="" />
+                      </figure>
+                      <div class="inner">
+                        <h4>Email</h4>
+                        <p>
+                            <a href="mailto:hello@shinestarinternational.in"
+                            >hello@shinestarinternational.in</a
+                            >
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <figure class="icon-box">
+                        <img src="{% static 'front_assets/images/icons/icon-30.png' %}" alt="" />
+                    </figure>
+                    <div class="inner">
+                        <h4>Call</h4>
+                        <p>
+                            <a href="tel:9458747374">+91-945-874-7374</a></p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 form-column">
+              <div class="form-inner">
+                <h2>Connect with Us</h2>
+                <form
+                  method="POST"
+                  action="#"
+                  id="contact-form"
+                  class="default-form"
+                >
+                {% csrf_token %} 
+                  <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          placeholder="Your Name *"
+                          pattern="[A-Za-z]+"
+                          title="Only characters are allowed."
+                          required
+                        />
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                      <input
+                        type="email"
+                        name="email"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        title="Enter a valid email address."
+                        placeholder="Email Address *"
+                        required=""
+                      />
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                      <input
+                        type="text"
+                        name="phone"
+                        required=""
+                        placeholder="Phone *"
+                      />
+                    </div>
+                    
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                      <textarea
+                        name="message"
+                        placeholder="Message ..."
+                      ></textarea>
+                    </div>
+                    <div
+                      class="col-lg-12 col-md-12 col-sm-12 form-group message-btn centred"
+                    >
+                      <button
+                        class="theme-btn-one"
+                        type="submit"
+                        name="submit-form"
+                      >
+                        Send Message
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- contactinfo-section end -->
+
+      <!-- locations-section -->
+      <section class="locations-section py-0 bg-color-2">
+        <iframe class="mb-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.1740910092235!2d72.82142838561985!3d18.967917409513984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce6a8a42de73%3A0xf7ae73d6d4bfc6c5!2sOzone%20Biz%20Center%2C%20Manaji%20Rajuji%20Rd%2C%20Nagpada%2C%20Madanpura%2C%20Mumbai%2C%20Maharashtra%20400008!5e0!3m2!1sen!2sin!4v1698054214792!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+      <!-- locations-section end -->
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "cms/base.html" %} 
+{% block title %}AddCurrent Page{% endblock%}
+
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %} 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Job Position</p>
+                                    <input type="text" class="form-control" name="position" value="{{opening.position}}" placeholder="Job Position">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Company Name</p>
+                                    <input type="text" class="form-control" name="company" value="{{opening.company}}" placeholder="Company Name">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Vaccancy</p>
+                                    <input type="number" class="form-control" name="vaccancy"  value="{{opening.vaccancy}}" placeholder="Vaccancy">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Salary From</p>
+                                    <input type="number" class="form-control" name="salary" value="{{opening.salary}}" placeholder="Salary From">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="mg-b-10">Salary To</p>
+                                    <input type="number" class="form-control" name="salaryEnd" value="{{opening.salaryEnd}}" placeholder="Salary To">
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label class="">Location</label>
+                                            <select class="form-control select select2" name="location">
+                                                {% for country in countries %}
+                                                    <option value="{{ country.id }}" {% if country.id == opening.location.id %}selected{% endif %}>
+                                                        {{ country.name }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-0">
+                                    <p class="mg-b-10">Description</p>
+                                    <textarea class="form-control" name="description" rows="4"  placeholder="Description...">{{opening.description}}</textarea>
+                                </div> 
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <p class="mb-2">Select Your Status</p>
+                                    <label class="custom-switch">
+                                        <input type="checkbox" name="status" class="custom-switch-input" checked>
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
+                            </div>                      
+                            <div class="col-lg-12 col-md-12 d-flex  justify-content-end mt-5">
+                                <div class="form-group d-flex row justify-content-end mb-0 mx-5">
+                                    <a href="#" class="btn">
+                                        <button class="btn ripple btn-primary pd-x-30 mg-r-5">Save</button>
+                                    </a>
+                                 </div>
+                                <div class="form-group d-flex row justify-content-end mb-0">
+                                    <a href="{% url 'opening' %}" class="btn">
+                                        <button class="btn ripple btn-secondary pd-x-30">Cancel</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -19,17 +19,17 @@ def Validate_img_extension(value):
          raise ValidationError(f'Only JPG, JPEG, PNG, or GIF files are allowed.')
 # End Validation Sections
 
-@login_required
-@user_passes_test(lambda user: user.is_superadmin)
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def country_page(request):
     country = Country.objects.all()
-    paginator = Paginator(country, 4) 
+    paginator = Paginator(country, 8) 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'backend-template/country.html',{'page_obj':page_obj})
+    return render(request, 'cms/country.html',{'page_obj':page_obj})
 
-@login_required
-@user_passes_test(lambda user: user.is_superadmin)
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def add_country_page(request):
         if request.method == 'POST':
             name = request.POST.get('name')
@@ -41,14 +41,15 @@ def add_country_page(request):
                 Validate_img_extension(image)
                 country = Country(name=name,image=image)
                 country.save()
+                messages.success(request, "Country added successfully")
                 return redirect('country')
             except ValidationError as e:
                 messages.error(request,str(e))
 
-        return render(request, 'backend-template/country_add.html')
+        return render(request, 'cms/country_add.html')
 
-@login_required
-@user_passes_test(lambda user: user.is_superadmin)
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def update_country_page(request, pk):
     if pk == pk:
         try:
@@ -67,16 +68,21 @@ def update_country_page(request, pk):
                     country.image = image
                 country.name = name
                 country.save()
+                messages.info(request, "Country update successfully")
                 return redirect('country')
             else:
                 country = Country.objects.create(pk=pk, name=name, image=image)
                 country.save()
+                messages.info(request, "Country update successfully")
                 return redirect('country')
     else:
         pass
-    return render(request, 'backend-template/country_update.html', {'country': country})
+    return render(request, 'cms/country_update.html', {'country': country})
 
+@login_required(login_url='admin_login')
+@user_passes_test(lambda user: user.is_superuser)
 def delete_country_page(request,pk):
     contact = Country.objects.get(pk=pk)
     contact.delete()
+    messages.warning(request, "Country deleted successfully")
     return redirect('country')

@@ -1,0 +1,221 @@
+{% extends "web/base.html" %} 
+{% load static %}
+{% block title %}Home Page{% endblock%}
+
+{% block content %}
+
+        <!--Page Title-->
+        <section class="page-title pb-0" style="background-image: url({% static 'front_assets/images/background/page-title-2.jpg' %});">
+            <div class="pattern-layer" style="background-image: url({% static 'front_assets/images/shape/pattern-35.png' %});"></div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <div class="title-box centred">
+                        <h1>CURRENT OPENINGS</h1>
+                        <ul class="bread-crumb clearfix">
+                            <li><a href="index.html">Home</a></li>
+                            <li>CURRENT OPENINGS</li>
+                        </ul>
+                        <!-- <p>Your Staffing Needs are Unique and Always Evolving</p> -->
+                    </div>
+                    <div class="bg-shape"></div>
+                </div>
+            </div>
+        </section>
+        <!--End Page Title-->
+
+
+        <!-- placejob-section -->
+        <section class="placejob-section applynow-section">
+            <div class="auto-container">
+                <div class="sec-title centred">
+                    <span class="top-title">CURRENT OPENINGS</span>
+                    <h2>FIND YOUR JOB YOU DESERVE IT</h2>
+                    <p>Your Perfect Place for Opportunities: Explore Our Current Openings</p>
+                    <!-- <p>We’re committed to fulfilling your unique hiring needs. Fll out the <br />form below & we’ll be in touch shortly</p> -->
+                </div>
+                <div class="portfolio-grid-1 protfolio-page">
+                    <div class="sortable-masonry">
+                        <div class="filters">
+                            <ul class="filter-tabs filter-btns centred clearfix">
+                                <li class="active filter" data-role="button" data-filter=".all">View All</li>
+                                {% for coun in country %}
+                                  <li class="filter" data-role="button" data-filter=".{{coun.name}}">{{coun.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="inner-box">
+                            <table class="table " style="display: block;
+                            overflow-y: scroll;
+                            height: 450px;">
+                                <thead class="thead-dark" style="position: sticky;
+                                top: -1px;
+                                background-color: #fff;
+                                z-index: 5;">
+                                  <tr>
+                                    <th scope="col">Sr. No.</th>
+                                    <th scope="col">Position</th>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Vaccancy</th>
+                                    <th scope="col">Salary</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">location</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Active</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="items-container" style="
+                                max-height: 300px;
+                                overflow: auto;" >
+                                {% for position in positions %}  
+                                  <tr class="masonry-item small-column all {{position.location}}">
+                                    <td data-th="Sr. No.">
+                                      {{position.id}}
+                                    </td>
+                                    <td data-th="Position">
+                                      {{position.position}}
+                                    </td>
+                                    <td data-th="Position">
+                                      {{position.company}}
+                                    </td>
+                                    <td data-th="Actual Qty.">
+                                      {{position.vaccancy}}
+                                    </td>
+                                    <td data-th="Salary (Rs)">
+                                      {{ position.salary }}-{{ position.salaryEnd }}
+                                    </td>
+                                    <td data-th="Description">
+                                      <ul>
+                                        {{position.description}}
+                                      </ul>
+                                    </td>
+                                    <td data-th="Loaction">
+                                      {{position.location}}
+                                    </td>
+                                    <td data-th="Status">
+                                      {% if position.status %}
+                                        <p class="text-success">
+                                          <b>Active</b>
+                                        </p>
+                                      {% else %}
+                                      <p class="text-danger">
+                                        <b>InActive</b>
+                                      </p>
+                                      {% endif %}
+                                    </td>
+                                    <td data-th="apply">
+                                      <a href="{% url 'front-register' %}" class="theme-btn-one">apply now</a>
+                                    </td>
+                                  </tr>                             
+                                {% endfor %}                               
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- placejob-section end -->
+      <!-- clients-style-two -->
+      <section
+        class="clients-style-two py-5"
+        style="background-image: url({% static 'front_assets/images/background/clients-3.jpg' %})"
+      >
+      <div class="auto-container">
+        <div
+          class="clients-carousel owl-carousel owl-theme owl-dots-none owl-nav-none"
+        >
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/01.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/02.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/03.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/04.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/05.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/06.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/07.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/08.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/09.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/10.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/11.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/12.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/13.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/14.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/15.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/16.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/17.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/18.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/19.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/20.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/21.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/22.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/23.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/24.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/25.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/26.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/27.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/28.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/29.jpg' %}" alt="" /></a>
+          </figure>
+          <figure class="clients-logo-box">
+            <a href="#!"><img src="{% static 'front_assets/images/clients/30.jpg' %}" alt="" /></a>
+          </figure>
+        </div>
+      </div>
+      </section>
+      <!-- clients-style-two end -->
+      {% endblock %}

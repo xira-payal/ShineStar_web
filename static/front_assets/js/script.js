@@ -164,25 +164,55 @@
 
 
 	//Tabs Box
-	if($('.tabs-box').length){
-		$('.tabs-box .tab-buttons .tab-btn').on('click', function(e) {
-			e.preventDefault();
-			var target = $($(this).attr('data-tab'));
-			
-			if ($(target).is(':visible')){
-				return false;
-			}else{
-				target.parents('.tabs-box').find('.tab-buttons').find('.tab-btn').removeClass('active-btn');
-				$(this).addClass('active-btn');
-				target.parents('.tabs-box').find('.tabs-content').find('.tab').fadeOut(0);
-				target.parents('.tabs-box').find('.tabs-content').find('.tab').removeClass('active-tab');
-				$(target).fadeIn(300);
-				$(target).addClass('active-tab');
-			}
-		});
-	}
+	$(document).ready(function() {
+		if ($('.tabs-box').length) {
+			$('.tabs-box .tab-buttons .tab-btn').on('click', function(e) {
+				e.preventDefault();
+				var target = $($(this).attr('data-tab'));
+	
+				if ($(target).is(':visible')) {
+					return false;
+				} else {
+					target.parents('.tabs-box').find('.tab-buttons').find('.tab-btn').removeClass('active-btn');
+					$(this).addClass('active-btn');
+					target.parents('.tabs-box').find('.tabs-content').find('.tab').fadeOut(0);
+					target.parents('.tabs-box').find('.tabs-content').find('.tab').removeClass('active-tab');
+					$(target).fadeIn(300);
+					$(target).addClass('active-tab');
+				}
+			});
+		}
+	});
 
+	// Tab Section
+	document.addEventListener('DOMContentLoaded', function () {
+        if (document.querySelectorAll('.tabs-box').length) {
+            var tabButtons = document.getElementById('tabButtons').querySelectorAll('.tab-btn');
+            var tabs = document.querySelectorAll('.tabs-content .tab');
 
+            tabButtons.forEach(function (tabBtn) {
+                tabBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var targetCountry = this.getAttribute('data-tab');
+
+                    tabs.forEach(function (tab) {
+                        var tabId = tab.getAttribute('id');
+                        if (tabId === targetCountry || targetCountry === 'all') {
+                            tab.style.display = 'block';
+                        } else {
+                            tab.style.display = 'none';
+                        }
+                    });
+
+                    tabButtons.forEach(function (btn) {
+                        btn.classList.remove('active-btn');
+                    });
+
+                    this.classList.add('active-btn');
+                });
+            });
+        }
+    });
 	//Tabs Box
 	if($('.tabs-box-2').length){
 		$('.tabs-box-2 .tab-buttons-2 .tab-btn-2').on('click', function(e) {

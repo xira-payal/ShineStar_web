@@ -3,8 +3,8 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('backend/', include('users.urls')),
+    path('backend/', admin.site.urls),
+    path('admin/', include('users.urls')),
     path('blog/', include('blog.urls')),
     path('carrer/', include('carrer.urls')),
     path('contact/', include('contact.urls')),

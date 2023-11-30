@@ -1,0 +1,2004 @@
+{% extends "web/base.html" %} 
+
+{% load static %}
+
+{% block title %}Home Page{% endblock%}
+
+
+{% block content %}
+
+<style>
+  button{
+    background:#fff
+  }
+  button.active-btn{
+    background:#0059b6;
+    color:#fff
+  }
+  button.active-btn h6{
+    color:#fff
+
+  }
+</style>
+
+      <!-- banner-section -->
+
+      <section class="banner-section style-one">
+
+        <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
+
+          <div class="slide-item style-one">
+
+            <div
+
+              class="image-layer"
+
+              style="background-image: url({% static 'front_assets/images/banner/banner-1.png' %})"
+
+            ></div>
+
+            <div class="pattern-layer">
+
+              <div
+
+                class="pattern-1"
+
+                style="background-image: url({% static 'front_assets/images/background/banner-1.jpg' %})"
+
+              ></div>
+
+              <div
+
+                class="pattern-2"
+
+                style="background-image: url({% static 'front_assets/images/shape/pattern-2.png' %})"
+
+              ></div>
+
+            </div>
+
+            <div class="auto-container">
+
+              <div class="row clearfix">
+
+                <div class="col-xl-10 col-lg-12 col-md-12 content-column">
+
+                  <div class="content-box">
+
+                    <span>Best HR Solutions for Your Business</span>
+
+                    <h1>
+
+                      WE HELP <br />YOU FIND AND KEEP <br />
+
+                      THE BEST TALENT.
+
+                    </h1>
+
+                    <p>Contact us today to learn more.</p>
+
+                    <div class="btn-box">
+
+                      <a href="{% url 'front-contact' %}" class="theme-btn-two">CONTACT</a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="slide-item style-two">
+
+            <div
+
+              class="image-layer"
+
+              style="background-image: url({% static 'front_assets/images/banner/banner-2.png' %})"
+
+            ></div>
+
+            <div class="pattern-layer">
+
+              <div
+
+                class="pattern-1"
+
+                style="background-image: url({% static 'front_assets/images/shape/pattern-3.png' %})"
+
+              ></div>
+
+              <div
+
+                class="pattern-2"
+
+                style="background-image: url({% static 'front_assets/images/background/banner-2.jpg' %})"
+
+              ></div>
+
+            </div>
+
+            <div class="auto-container">
+
+              <div class="row clearfix">
+
+                <div
+
+                  class="col-xl-10 col-lg-12 col-md-12 offset-xl-6 content-column"
+
+                >
+
+                  <div class="content-box pl-0">
+
+                    <span>Your HR Partner for Success</span>
+
+                    <h1>
+
+                      WE HELP YOU MANAGE <br />
+
+                      YOUR WORKFORCE <br />
+
+                      EFFECTIVELY.
+
+                    </h1>
+
+                    <p>Get a free consultation today.</p>
+
+                    <div class="btn-box">
+
+                      <a href="{% url 'front-about' %}" class="theme-btn-two">Learn More</a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="slide-item style-one">
+
+            <div
+
+              class="image-layer"
+
+              style="background-image: url({% static 'front_assets/images/banner/banner-3.png' %})"
+
+            ></div>
+
+            <div class="pattern-layer">
+
+              <div
+
+                class="pattern-1"
+
+                style="background-image: url({% static 'front_assets/images/background/banner-3.jpg' %})"
+
+              ></div>
+
+              <div
+
+                class="pattern-2"
+
+                style="background-image: url({% static 'front_assets/images/shape/pattern-2.png' %})"
+
+              ></div>
+
+            </div>
+
+            <div class="auto-container">
+
+              <div class="row clearfix">
+
+                <div class="col-xl-10 col-lg-12 col-md-12 content-column">
+
+                  <div class="content-box">
+
+                    <span>Empowering Your Workforce</span>
+
+                    <h1>
+
+                      HR SOLUTIONS <br />
+
+                      THAT HELP YOUR <br />
+
+                      EMPLOYEES SUCCEED.
+
+                    </h1>
+
+                    <p>A group of employees celebrating a success together.</p>
+
+                    <div class="btn-box">
+
+                      <a href="#" class="theme-btn-two">Learn More</a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- banner-section end -->
+
+      <!-- growth-section -->
+
+      <section class="current-opening growth-section">
+        <div class="pattern-layer wow slideInLeft animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url({% static 'front_assets/images/icons/growth-icon.png' %});"></div>
+        <div class="auto-container">
+          <div class="sec-title light centred">
+            <span class="top-title">current job opening</span>
+            <h2>Search By Job Country</h2>
+          </div>
+          <div class="service-details-content after-header">
+            <div class="content-three">
+              <div class="tabs-box">
+                <div class="row clearfix">
+                  <div class="col-lg-2 col-md-12 col-sm-12 btn-column">
+                    <div class="tab-btn-box">
+                      <ul class="tab-btns row tab-buttons clearfix"> 
+                        {% for coun in country %} 
+                        <button style="padding: 15px; margin-bottom: 15px;width:200px;height:90px;overflow:hidden" class="w3-bar-item w3-button tab-btn" onclick="openCity('{{ coun.name }}'); toggleActiveClass(this)" data-tab="{{ coun.name }}">
+                          <div class="icon-box d-flex" style="#">
+                            <img src="{{ coun.image.url }}" alt="{{ coun.name }}" style="width:50%" >
+                            <h6 style="
+                            justify-content: center;
+                            align-items: center;
+                            display: flex;
+                            padding-left: 10px;
+                            font-weight: 600;
+                          ">{{ coun.name }}</h6>
+                          </div>
+                        </button> {% endfor %} 
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-10 col-md-12 col-sm-12 content-column">
+                    <div style="background:#f5f9fc">
+                      <div class="tabs-content job-list">
+                        <div class="inner-box">
+                          <div class="inner-box">
+                            <div class="content-table">
+                              <table class="rwd-table" style="background:'#f5f9fc'">
+                                <thead>
+                                  <th>Sr. No.</th>
+                                  <th>Position</th>
+                                  <th>company</th>
+                                  <th>Vacancy</th>
+                                  <th>Salary</th>
+                                  <th>Description</th>
+                                  <th>Location</th>
+                                  <th>Status</th>
+                                  <th>Active</th>
+                                </thead>
+                                  
+                                  {% for position in positions %} <tr class="w3-container city {{ position.location }}">
+                                    <td>
+                                      {{ position.id }}
+                                    </td>
+                                    <td data-th="Position">
+                                      {{ position.position }}
+                                    </td>
+                                    <td data-th="Company">
+                                      {{ position.company }}
+                                    </td>
+                                    <td data-th="Vacancy">
+                                      {{ position.vaccancy }}
+                                    </td>
+                                    <td data-th="Salary (Rs)">
+                                      {{ position.salary }}-{{ position.salaryEnd }}
+                                    </td>
+                                    <td data-th="Description">
+                                      <ul>
+                                        {{ position.description }}
+                                      </ul>
+                                    </td>
+                                    <td data-th="Location">
+                                      {{ position.location }}
+                                    </td>
+                                    <td data-th="Status"> {% if position.status %} <p class="text-success">
+                                        <b>Active</b>
+                                      </p> {% else %} <p class="text-danger">
+                                        <b>Inactive</b>
+                                      </p> {% endif %} </td>
+                                    <td data-th="Apply">
+                                      <a href="{% url 'front-login' %}" class="theme-btn-one">Apply Now</a>
+                                    </td>
+                                  </tr> {% endfor %} 
+                                
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <!-- about-style-two -->
+
+      <section class="about-style-two about-page">
+
+        <div class="auto-container">
+
+          <div class="inner-container">
+
+            <div class="row clearfix">
+
+              <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+
+                <div id="image_block_1">
+
+                  <div class="image-box">
+
+                    <div
+
+                      class="pattern-layer"
+
+                      style="
+
+                        background-image: url({% static 'front_assets/images/shape/pattern-14.png' %});
+
+                      "
+
+                    ></div>
+
+                    <div
+
+                      class="video-inner"
+
+                      style="
+
+                        background-image: url({% static 'front_assets/images/resource/video-bg-1.jpg' %});
+
+                      "
+
+                    ></div>
+
+                    <figure class="image-1">
+
+                      <img src="{% static 'front_assets/images/resource/about-2.png' %}" alt="" />
+
+                    </figure>
+
+                    <figure
+
+                      class="image-2 wow slideInLeft animated animated"
+
+                      data-wow-delay="00ms"
+
+                    >
+
+                      <img
+
+                        src="{% static 'front_assets/images/resource/briefcase-1.png' %}"
+
+                        alt=""
+
+                      />
+
+                    </figure>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+
+                <div id="content_block_3">
+
+                  <div class="content-box">
+
+                    <div class="sec-title">
+
+                      <span class="top-title">WELCOME TO SHINE STAR</span>
+
+                      <h2>ABOUT US</h2>
+
+                    </div>
+
+                    <div class="text">
+
+                      <p>
+
+                        At Shine Star, we are dedicated to transforming dreams
+
+                        into tangible careers. We understand the vital role that
+
+                        the right job plays in shaping your future, and we
+
+                        strive to connect you with opportunities that align with
+
+                        your aspirations and skills.
+
+                      </p>
+
+                      <p>
+
+                        Our mission is simple yet profound: to be the bridge
+
+                        that connects talent with the right organizations. We
+
+                        specialize in facilitating connections across a diverse
+
+                        range of industries, ensuring that each candidate finds
+
+                        their perfect fit and each company discovers the ideal
+
+                        match for their team.
+
+                      </p>
+
+                      <p>
+
+                        With a team of experienced and passionate HR
+
+                        professionals, we guide you through every step of the
+
+                        hiring ...
+
+                      </p>
+
+                    </div>
+
+                    <div class="link">
+
+                      <a href="#!"
+
+                        ><i class="flaticon-right-arrow"></i>Read More</a
+
+                      >
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- about-style-two end -->
+
+
+
+      <!-- hiring-strategies -->
+
+      <section class="hiring-strategies pt-0">
+
+        <div class="auto-container">
+
+          <div class="inner-box">
+
+            <div class="funfact-inner clearfix">
+
+              <div class="row clearfix">
+
+                <div class="col-lg-4 col-md-6 col-sm-12 counter-column">
+
+                  <div class="counter-block">
+
+                    <div class="count-outer count-box">
+
+                      <span class="count-text" data-speed="1500" data-stop="13"
+
+                        >0</span
+
+                      >+
+
+                    </div>
+
+                    <h6>
+
+                      Years of <br />
+
+                      Experience
+
+                    </h6>
+
+                  </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 counter-column">
+
+                  <div class="counter-block">
+
+                    <div class="count-outer count-box">
+
+                      <span class="count-text" data-speed="1500" data-stop="123"
+
+                        >0</span
+
+                      >+
+
+                    </div>
+
+                    <h6>
+
+                      HAPPY <br />
+
+                      CLIENTS
+
+                    </h6>
+
+                  </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 counter-column">
+
+                  <div class="counter-block">
+
+                    <div class="count-outer count-box">
+
+                      <span class="count-text" data-speed="1500" data-stop="18"
+
+                        >0</span
+
+                      ><span>+</span>
+
+                    </div>
+
+                    <h6>
+
+                      OUR <br />
+
+                      NETWORKS
+
+                    </h6>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- hiring-strategies end -->
+
+
+
+      <!-- chooseus-section -->
+
+<!--       <section class="chooseus-section bg-color-1">
+
+        <div
+
+          class="pattern-layer"
+
+          style="background-image: url({% static 'front_assets/images/shape/pattern-18.png' %})"
+
+        ></div>
+
+        <div class="auto-container">
+
+          <div class="sec-title light">
+
+            <span class="top-title">WHAT WE DO ?</span>
+
+            <h2>OUR SERVICES</h2>
+
+          </div>
+
+          <div class="row clearfix">
+
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block">
+
+              <div
+
+                class="chooseus-block-one light wow fadeInUp animated animated"
+
+                data-wow-delay="00ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="icon-box">
+
+                    <img
+
+                      src="{% static 'front_assets/images/icons/manppower-recruitment.svg' %}"
+
+                      alt=""
+
+                    />
+
+                  </figure>
+
+                  <h3>
+
+                    Manpower <br />
+
+                    Recruitment
+
+                  </h3>
+
+                  <p>
+
+                    Our full-service recruitment covers Screening, Sourcing,
+
+                    Onboarding, and Employment contracting for a seamless hiring
+
+                    experience. Your success, our mission.
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block">
+
+              <div
+
+                class="chooseus-block-one light wow fadeInUp animated animated"
+
+                data-wow-delay="200ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="icon-box">
+
+                    <img
+
+                      src="{% static 'front_assets/images/icons/employee-management.svg' %}"
+
+                      alt=""
+
+                    />
+
+                  </figure>
+
+                  <h3>
+
+                    Employee <br />
+
+                    Management
+
+                  </h3>
+
+                  <p>
+
+                    Global HR Management: Payroll, Banking, Govt IDs, GOSI,
+
+                    Medical Insurance, Driving License, and Beyond –
+
+                    Comprehensive Services for Businesses Worldwide.
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block">
+
+              <div
+
+                class="chooseus-block-one light wow fadeInUp animated animated"
+
+                data-wow-delay="400ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="icon-box">
+
+                    <img
+
+                      src="{% static 'front_assets/images/icons/hr-aministration.svg' %}"
+
+                      alt=""
+
+                    />
+
+                  </figure>
+
+                  <h3>
+
+                    HR <br />
+
+                    Administration
+
+                  </h3>
+
+                  <p>
+
+                    Comprehensive HR admin services: policies, termination
+
+                    guidance, planning, and precise employee database
+
+                    maintenance tailored to your organization.
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block">
+
+              <div
+
+                class="chooseus-block-one light wow fadeInUp animated animated"
+
+                data-wow-delay="600ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="icon-box">
+
+                    <img src="{% static 'front_assets/images/icons/hr-service.svg' %}" alt="" />
+
+                  </figure>
+
+                  <h3>
+
+                    HR <br />
+
+                    Services
+
+                  </h3>
+
+                  <p>
+
+                    Empower your business with tailored HR expertise: Advisory,
+
+                    Compliance, Change Management, and more. Comprehensive HR
+
+                    solutions for your success.
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section> -->
+
+
+
+      <section class="chooseus-section bg-color-1">
+        <div
+          class="pattern-layer"
+          style="background-image: url({% static 'front_assets/images/shape/pattern-18.png' %})"
+        ></div>
+        <div class="auto-container">
+          <div class="sec-title light">
+            <span class="top-title">WHAT WE DO ?</span>
+            <h2>OUR SERVICES</h2>
+          </div>
+          <div class="row clearfix justify-content-center">
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block mb-4">
+              <div
+                class="chooseus-block-one light wow fadeInUp animated animated"
+                data-wow-delay="00ms"
+                data-wow-duration="1500ms"
+              >
+                <div class="inner-box">
+                  <figure class="icon-box">
+                    <img
+                      src="{% static 'front_assets/images/icons/manppower-recruitment.svg' %}"
+                      alt=""
+                    />
+                  </figure>
+                  <h3>
+                    Manpower <br />
+                    Recruitment
+                  </h3>
+                  <p>
+                    Our full-service recruitment covers Screening, Sourcing,
+                    Onboarding, and Employment contracting for a seamless hiring
+                    experience. Your success, our mission.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block mb-4">
+              <div
+                class="chooseus-block-one light wow fadeInUp animated animated"
+                data-wow-delay="200ms"
+                data-wow-duration="1500ms"
+              >
+                <div class="inner-box">
+                  <figure class="icon-box">
+                    <img
+                      src="{% static 'front_assets/images/icons/employee-management.svg' %}"
+                      alt=""
+                    />
+                  </figure>
+                  <h3>
+                    Employee <br />
+                    Management
+                  </h3>
+                  <p>
+                    Global HR Management: Payroll, Banking, Govt IDs, GOSI,
+                    Medical Insurance, Driving License, and Beyond –
+                    Comprehensive Services for Businesses Worldwide.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block mb-4">
+              <div
+                class="chooseus-block-one light wow fadeInUp animated animated"
+                data-wow-delay="400ms"
+                data-wow-duration="1500ms"
+              >
+                <div class="inner-box">
+                  <figure class="icon-box">
+                    <img
+                      src="{% static 'front_assets/images/icons/hr-aministration.svg' %}"
+                      alt=""
+                    />
+                  </figure>
+                  <h3>
+                    HR <br />
+                    Administration
+                  </h3>
+                  <p>
+                    Comprehensive HR admin services: policies, termination
+                    guidance, planning, and precise employee database
+                    maintenance tailored to your organization.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block mb-4">
+              <div
+                class="chooseus-block-one light wow fadeInUp animated animated"
+                data-wow-delay="600ms"
+                data-wow-duration="1500ms"
+              >
+                <div class="inner-box">
+                  <figure class="icon-box">
+                    <img src="{% static 'front_assets/images/icons/hr-service.svg' %}" alt="" />
+                  </figure>
+                  <h3>
+                    HR <br />
+                    Services
+                  </h3>
+                  <p>
+                    Empower your business with tailored HR expertise: Advisory,
+                    Compliance, Change Management, and more. Comprehensive HR
+                    solutions for your success.
+                  </p>
+                  <!-- <a href="#!"><i class="flaticon-right-arrow"></i>More Details</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block mb-4">
+              <div
+                class="chooseus-block-one light wow fadeInUp animated animated"
+                data-wow-delay="600ms"
+                data-wow-duration="1500ms"
+              >
+                <div class="inner-box">
+                  <figure class="icon-box">
+                    <img src="{% static 'front_assets/images/icons/visastamp.svg' %}" alt="" />
+                  </figure>
+                  <h3>
+                    Visa Stamping
+                  </h3>
+                  <p>
+                    Streamline your travel plans with our efficient Visa Stamping service. Hassle-free processing for a smooth journey. Your passport, our expertise.
+                  </p>
+                  <!-- <a href="#!"><i class="flaticon-right-arrow"></i>More Details</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block mb-4">
+              <div
+                class="chooseus-block-one light wow fadeInUp animated animated"
+                data-wow-delay="600ms"
+                data-wow-duration="1500ms"
+              >
+                <div class="inner-box">
+                  <figure class="icon-box">
+                    <img src="{% static 'front_assets/images/icons/immigration.svg' %}" alt="" />
+                  </figure>
+                  <h3>
+                    Immigration
+                  </h3>
+                  <p>
+                    Expert immigration assistance for a smooth transition. Visa processing, legal support, and personalized guidance for a hassle-free journey to your new home.
+                  </p>
+                  <!-- <a href="#!"><i class="flaticon-right-arrow"></i>More Details</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 chooseus-block mb-4">
+              <div
+                class="chooseus-block-one light wow fadeInUp animated animated"
+                data-wow-delay="600ms"
+                data-wow-duration="1500ms"
+              >
+                <div class="inner-box">
+                  <figure class="icon-box">
+                    <img src="{% static 'front_assets/images/icons/passport.svg' %}" alt="" />
+                  </figure>
+                  <h3>
+                    Ticketing
+                  </h3>
+                  <p>
+                    Seamless travel awaits! Elevate your journey with our expert Foreign Ticketing service. Explore the world hassle-free. Book your adventure now!
+                  </p>
+                  <!-- <a href="#!"><i class="flaticon-right-arrow"></i>More Details</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- chooseus-section end -->
+
+
+
+      <!-- awards-section -->
+
+      <section class="awards-section">
+
+        <div class="pattern-layer"></div>
+
+        <div class="auto-container">
+
+          <div class="sec-title">
+
+            <span class="top-title">WHY CHOOSE US</span>
+
+            <h2>WHY CHOOSE US</h2>
+
+            <!-- <p>Long established fact that a reader will be distracted by the <br />readable content of a page.</p> -->
+
+          </div>
+
+          <div class="row clearfix">
+
+            <div class="col-lg-4 col-md-12 col-sm-12 inner-column">
+
+              <div class="inner-block">
+
+                <div class="single-award-block">
+
+                  <div class="inner-box">
+
+                    <div class="upper-box">
+
+                      <figure class="icon-box">
+
+                        <img src="{% static 'front_assets/images/icons/award.svg' %}" alt="" />
+
+                      </figure>
+
+                      <h3>
+
+                        Recognition <br />
+
+                        & Awards
+
+                      </h3>
+
+                    </div>
+
+                    <ul class="lower-box">
+
+                      <li>
+
+                        Acknowledged for quality work by esteemed overseas
+
+                        companies.
+
+                      </li>
+
+                    </ul>
+
+                  </div>
+
+                </div>
+
+                <div class="single-award-block">
+
+                  <div class="inner-box">
+
+                    <div class="upper-box">
+
+                      <figure class="icon-box">
+
+                        <img src="{% static 'front_assets/images/icons/c-support.svg' %}" alt="" />
+
+                      </figure>
+
+                      <h3>
+
+                        Comprehensive <br />
+
+                        Support
+
+                      </h3>
+
+                    </div>
+
+                    <ul class="lower-box">
+
+                      <li>
+
+                        Guiding you seamlessly through passport, immigration,
+
+                        and visa processes.
+
+                      </li>
+
+                    </ul>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12 image-column">
+
+              <figure class="image-box">
+
+                <img src="{% static 'front_assets/images/resource/award-1.png' %}" alt="" />
+
+              </figure>
+
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12 inner-column">
+
+              <div class="inner-block">
+
+                <div class="single-award-block">
+
+                  <div class="inner-box">
+
+                    <div class="upper-box">
+
+                      <figure class="icon-box">
+
+                        <img src="{% static 'front_assets/images/icons/expertise.svg' %}" alt="" />
+
+                      </figure>
+
+                      <h3>
+
+                        Global Reach <br />
+
+                        & Expertise
+
+                      </h3>
+
+                    </div>
+
+                    <ul class="lower-box">
+
+                      <li>
+
+                        A strong presence across India, Nepal, Middle East, and
+
+                        Europe.
+
+                      </li>
+
+                    </ul>
+
+                  </div>
+
+                </div>
+
+                <div class="single-award-block">
+
+                  <div class="inner-box">
+
+                    <div class="upper-box">
+
+                      <figure class="icon-box">
+
+                        <img src="{% static 'front_assets/images/icons/network.svg' %}" alt="" />
+
+                      </figure>
+
+                      <h3>
+
+                        Extensive <br />
+
+                        Networks
+
+                      </h3>
+
+                    </div>
+
+                    <ul class="lower-box">
+
+                      <li>
+
+                        Vast network of associate and partner offices for
+
+                        unmatched support.
+
+                      </li>
+
+                    </ul>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- awards-section end -->
+
+      <!-- clients-style-two -->
+
+      <section
+
+        class="clients-style-two"
+
+        style="background-image: url({% static 'front_assets/images/background/clients-1.jpg' %})"
+
+      >
+
+        <div class="auto-container">
+
+          <div class="title-inner centred">
+
+            <h2>
+
+              YOUR DREAM JOB, OUR EXPERT GUIDANCE <br />
+
+              – A PERFECT MATCH !
+
+            </h2>
+
+            <div class="btn-box">
+
+              <a href="{% url 'front-register' %}" class="btn-two">Apply Now</a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- clients-style-two end -->
+
+
+
+      <!-- process-section -->
+
+      <section class="process-section custom-process centred">
+
+        <div class="auto-container">
+
+          <div class="sec-title text-left">
+
+            <span class="top-title">our process</span>
+
+            <h2>Get Connected With Us!</h2>
+
+          </div>
+
+          <div class="row clearfix">
+
+            <div class="col-lg-4 col-md-6 col-sm-12 process-block">
+
+              <div
+
+                class="process-block-one wow fadeInUp animated animated"
+
+                data-wow-delay="00ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="icon-box">
+
+                    <img src="{% static 'front_assets/images/icons/login-icon.svg' %}" alt="" />
+
+                    <span>01</span>
+
+                    <div class="anim-icon">
+
+                      <div
+
+                        class="icon-1"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/shape/pattern-8.png' %});
+
+                        "
+
+                      ></div>
+
+                      <div
+
+                        class="icon-2 rotate-me"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/icons/anim-icon-2.png' %});
+
+                        "
+
+                      ></div>
+
+                      <div
+
+                        class="icon-3 rotate-me"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/icons/anim-icon-2.png' %});
+
+                        "
+
+                      ></div>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="lower-content">
+
+                    <h3>Login / Register</h3>
+
+                    <p>
+
+                      This is the first step on your journey to finding the
+
+                      perfect job. Create an account or log in to unlock
+
+                      exclusive job opportunities tailored to your profile.
+
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 process-block">
+
+              <div
+
+                class="process-block-one wow fadeInUp animated animated"
+
+                data-wow-delay="300ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="icon-box">
+
+                    <img src="{% static 'front_assets/images/icons/cv-icon.svg' %}" alt="" />
+
+                    <span>02</span>
+
+                    <div class="anim-icon">
+
+                      <div
+
+                        class="icon-1"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/shape/pattern-8.png' %});
+
+                        "
+
+                      ></div>
+
+                      <div
+
+                        class="icon-2 rotate-me"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/icons/anim-icon-2.png' %});
+
+                        "
+
+                      ></div>
+
+                      <div
+
+                        class="icon-3 rotate-me"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/icons/anim-icon-2.png' %});
+
+                        "
+
+                      ></div>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="lower-content">
+
+                    <h3>Submit Resume</h3>
+
+                    <p>
+
+                      Show employers your skills and experience by uploading
+
+                      your resume. This will help them discover your potential
+
+                      and match you with suitable roles.
+
+                    </p>
+
+                    <!-- <a href="#">More Details</a> -->
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 process-block">
+
+              <div
+
+                class="process-block-one wow fadeInUp animated animated"
+
+                data-wow-delay="600ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="icon-box">
+
+                    <img src="{% static 'front_assets/images/icons/job-icon.svg' %}" alt="" />
+
+                    <span>03</span>
+
+                    <div class="anim-icon">
+
+                      <div
+
+                        class="icon-1"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/shape/pattern-8.png' %});
+
+                        "
+
+                      ></div>
+
+                      <div
+
+                        class="icon-2 rotate-me"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/icons/anim-icon-2.png' %});
+
+                        "
+
+                      ></div>
+
+                      <div
+
+                        class="icon-3 rotate-me"
+
+                        style="
+
+                          background-image: url({% static 'front_assets/images/icons/anim-icon-2.png' %});
+
+                        "
+
+                      ></div>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="lower-content">
+
+                    <h3>Grab Your Best Work Place</h3>
+
+                    <p>
+
+                      Explore and apply to a curated selection of jobs. With our
+
+                      help, you can find the perfect workplace where your skills
+
+                      and ambitions align for a fulfilling career.
+
+                    </p>
+
+                    <!-- <a href="#">More Details</a> -->
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- process-section end -->
+
+      <!-- testimonial-section -->
+
+      <section
+
+        class="testimonial-section custom-testimonial bg-color-2"
+
+        style="background-image: url(front_assets/images/background/clients-2.jpg)"
+
+      >
+
+        <div class="auto-container">
+
+          <div class="sec-title light">
+
+            <span class="top-title">Client Testimonials</span>
+
+            <h2>WHAT OUR CLIENT SAYS ?</h2>
+
+          </div>
+
+          <div
+
+            class="testimonial-carousel owl-carousel owl-theme owl-dots-none owl-nav-none"
+
+          >
+
+            <div class="testimonial-block-one">
+
+              <div class="inner-box">
+
+                <div class="border-shap"></div>
+
+                <figure class="quote-box">
+
+                  <img src="{% static 'front_assets/images/icons/quotes.svg' %}" alt="" />
+
+                </figure>
+
+                <div class="author-box">
+
+                  <figure class="author-thumb">
+
+                    <img src="{% static 'front_assets/images/resource/no-image.png' %}" alt="" />
+
+                  </figure>
+
+                  <h3>Ramesh Kumar</h3>
+
+                  <span>Bangalore</span>
+
+                </div>
+
+                <div class="text">
+
+                  <p>
+
+                    "Shine Star's HR service transformed my career trajectory
+
+                    and brought me to my ideal workplace."
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="testimonial-block-one">
+
+              <div class="inner-box">
+
+                <div class="border-shap"></div>
+
+                <figure class="quote-box">
+
+                  <img src="{% static 'front_assets/images/icons/quotes.svg' %}" alt="" />
+
+                </figure>
+
+                <div class="author-box">
+
+                  <figure class="author-thumb">
+
+                    <img src="{% static 'front_assets/images/resource/no-image.png' %}" alt="" />
+
+                  </figure>
+
+                  <h3>Priya Singh</h3>
+
+                  <span>Mumbai</span>
+
+                </div>
+
+                <div class="text">
+
+                  <p>
+
+                    "With Shine Star's HR support, I found a job that perfectly
+
+                    matches my skills and ambitions."
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="testimonial-block-one">
+
+              <div class="inner-box">
+
+                <div class="border-shap"></div>
+
+                <figure class="quote-box">
+
+                  <img src="{% static 'front_assets/images/icons/quotes.svg' %}" alt="" />
+
+                </figure>
+
+                <div class="author-box">
+
+                  <figure class="author-thumb">
+
+                    <img src="{% static 'front_assets/images/resource/no-image.png' %}" alt="" />
+
+                  </figure>
+
+                  <h3>Alok Verma</h3>
+
+                  <span>Delhi</span>
+
+                </div>
+
+                <div class="text">
+
+                  <p>
+
+                    "Shine Star's HR assistance was invaluable in navigating the
+
+                    job market and landing a fulfilling position."
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- testimonial-section end -->
+
+
+
+      <!-- news-section -->
+
+      <section class="news-section">
+
+        <div class="auto-container">
+
+          <div class="sec-title">
+
+            <h2>OUR BLOGS</h2>
+
+          </div>
+
+          <div class="row clearfix">
+          {% for blog in blogs %}
+            <div class="col-lg-4 col-md-6 col-sm-12 news-block">
+
+              <div
+
+                class="news-block-one wow fadeInUp animated animated"
+
+                data-wow-delay="00ms"
+
+                data-wow-duration="1500ms"
+
+              >
+
+                <div class="inner-box">
+
+                  <figure class="image-box">
+
+                    <a href="#!"
+
+                      ><img src="{{ blog.image.url }}" alt=""
+
+                    /></a>
+
+                    <span class="post-date">{{blog.created}}</span>
+
+                  </figure>
+
+                  <div class="lower-content">
+
+                    <div class="inner">
+
+                      <h3>
+
+                        <a href="#!">{{blog.title}}</a>
+
+                      </h3>
+
+
+
+                      <p>
+
+                        {{ blog.content|truncatewords:100|safe }}
+
+
+                      </p>
+
+                      <a href="">Read More</a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          {% endfor %}
+          
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- news-section end -->
+
+
+
+      <!-- clients-style-two -->
+
+      <section
+
+        class="clients-style-two py-5"
+
+        style="background-image: url({% static 'front_assets/images/background/clients-3.jpg' %})"
+
+      >
+
+        <div class="auto-container">
+
+          <div
+
+            class="clients-carousel owl-carousel owl-theme owl-dots-none owl-nav-none"
+
+          >
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/01.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/02.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/03.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/04.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/05.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/06.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/07.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/08.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/09.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/10.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/11.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/12.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/13.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/14.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/15.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/16.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/17.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/18.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/19.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/20.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/21.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/22.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/23.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/24.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/25.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/26.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/27.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/28.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/29.jpg' %}" alt="" /></a>
+
+            </figure>
+
+            <figure class="clients-logo-box">
+
+              <a href="#!"><img src="{% static 'front_assets/images/clients/30.jpg' %}" alt="" /></a>
+
+            </figure>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- clients-style-two end -->
+<script>
+    function openCity(cityName) {
+      var i;
+      var x = document.getElementsByClassName("city");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      document.querySelectorAll('.city.' + cityName).forEach(function(city) {
+        city.style.display = "table-row";
+    });  
+    }
+    function toggleActiveClass(button) {
+      var buttons = document.querySelectorAll('.tab-btns .tab-btn');
+      console.log(buttons);
+  
+      buttons.forEach(function (otherButton) {
+          otherButton.classList.remove('active-btn');
+      });
+  
+      button.classList.add('active-btn');
+      console.log('active-btn');
+  
+      openCity(button.getAttribute('data-tab'));
+  }
+</script>
+{% endblock %}

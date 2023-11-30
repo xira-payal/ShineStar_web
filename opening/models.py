@@ -3,8 +3,10 @@ from country.models import Country
 # Create your models here.
 class Opening(models.Model):
     position = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
     vaccancy = models.IntegerField()
     salary = models.IntegerField()
+    salaryEnd = models.IntegerField()
     description = models.CharField(max_length=255)
     location = models.ForeignKey(Country, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)

@@ -8,6 +8,7 @@ class Contact(models.Model):
     email = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
     message = models.CharField(max_length=255)
-
+    date = models.DateField(auto_now_add=True)
+    
     def __str__(self):
         return self.name

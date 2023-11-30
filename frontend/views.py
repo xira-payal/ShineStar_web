@@ -3,6 +3,7 @@ from contact.models import Contact
 from carrer.models import Carrer
 from country.models import Country
 from opening.models import Opening
+from blog.models import Blogs
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -11,6 +12,7 @@ from django.contrib.auth.models import User
 import os
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.utils.translation import activate
 # Create your views here.
 
 # Validation Sections
@@ -39,7 +41,7 @@ def register_page(request):
         except ValidationError as e:
             messages.error(request, str(e))
 
-    return render(request,'frontend_template/register.html')
+    return render(request,'web/register.html')
 
 def login_page(request):
     if request.method == 'POST':
@@ -60,83 +62,23 @@ def login_page(request):
         except ValidationError as e:
             messages.error(request, str(e))
 
-    return render(request, 'frontend_template/login.html')
+    return render(request, 'web/login.html')
 
 def index_page(request):
     positions = Opening.objects.all()
     country = Country.objects.all()
+    blogs = Blogs.objects.all()
     selected_country_id = request.GET.get('country')
     if selected_country_id:
         positions = positions.filter(location=selected_country_id)
-    return render(request,'frontend_template/index.html',{'country':country,'positions':positions})
+    return render(request,'web/index.html',{'country':country,'positions':positions,'blogs':blogs})
 
 def about_page(request):
-    return render(request,'frontend_template/about-us.html')
-
-@login_required(login_url='front-register')
-def carrer_page(request):
-     if request.method == 'POST':
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        address = request.POST.get('address')
-        message = request.POST.get('message')
-        education = request.POST.get('education')
-        experiance = request.POST.get('experiance')
-        files = request.FILES.get('files')
-        try:
-            carrer = Carrer(firstname=firstname,lastname=lastname,email=email,phone=phone,address=address,message=message,education=education,experiance=experiance,files=files)
-            carrer.save()
-            messages.success(request, 'Your Carrer has Been Submited.')
-        except Exception as e:
-            messages.error(request, f'An error occurred: {str(e)}')
-     return render(request,'frontend_template/career.html')
-
-def contact_page(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        message = request.POST.get('message')
-        try:
-            contact = Contact(name=name,email=email,phone=phone,message=message)
-            contact.save()
-            messages.success(request, 'Your contact information has been successfully submitted.')
-        except Exception as e:
-            messages.error(request, f'An error occurred: {str(e)}')
-    return render(request,'frontend_template/contact-us.html')
-
-def opening_page(request):
-    positions = Opening.objects.all()
-    country = Country.objects.all()
-    selected_country_id = request.GET.get('country')
-    if selected_country_id:
-        positions = positions.filter(location=selected_country_id)
-    return render(request,'frontend_template/current-openings.html',{'country':country,'positions':positions})
-
-def apply_opening_page(request):
-    if request.method == 'POST':
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        address = request.POST.get('address')
-        message = request.POST.get('message')
-        education = request.POST.get('education')
-        experiance = request.POST.get('experiance')
-        files = request.FILES.get('files')
-        try:
-            carrer = Carrer(firstname=firstname,lastname=lastname,email=email,phone=phone,address=address,message=message,education=education,experiance=experiance,files=files)
-            carrer.save()
-            messages.success(request, 'Job has Been Apply.')
-            return redirect('front-apply')
-        except Exception as e:
-            messages.error(request, f'An error occurred: {str(e)}')        
-    else:
-        pass
-    return render(request,'frontend_template/apply-opening.html')
+    return render(request,'web/about-us.html')
 
 def logout_page(request):
     logout(request)
     return redirect('front-home')
+
+def about_page(request):
+    return render(request,'web/about-us.html')
