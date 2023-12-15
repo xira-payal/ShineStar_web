@@ -6038,7 +6038,7 @@ fieldset:disabled a.btn {
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #a6a6bf;
+    color: #000000 !important;
     background-color: #ffffff;
     background-clip: padding-box;
     border: 1px solid #e8e8f7;
@@ -75831,6 +75831,11 @@ html.fullscreen .main-content {
 *::-ms-backdrop,
 .sidemenu-logo .main-logo {
     display: block !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #000000 !important;
+    line-height: 38px;
 }
 
 /* ###### IE STYLES ###### */

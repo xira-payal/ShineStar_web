@@ -13,7 +13,19 @@
     {% comment %} {% endcomment %}
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12">
-            
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 mx-auto">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                                <span aria-hidden="true"><i class="fe fe-x-circle"></i></span></button>
+                                <strong>Your message :</strong> {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
             <div class="card" id="transcation-crypto-1">
                 <div class="card-header bd-b-0">
                     <div class="d-flex justify-content-between">
@@ -22,7 +34,7 @@
                         </div>
                         <p>
                             <a href="{% url 'addcontact' %}" class="btn btn-outline-primary btn-xl rounded-11 mr-2" data-toggle="tooltip" data-original-title="add">
-                                <span>Add Item</span>
+                                <span>Add Contact</span>
                             </a>
                         </p>
                     </div>
@@ -57,7 +69,7 @@
                                                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z"/>
                                                 </svg></i>
                                             </a>
-                                            <a  href="{% url 'removecontact' call.id %}" class="btn btn-outline-danger btn-sm rounded-11" data-toggle="tooltip" data-original-title="Delete">
+                                            <a  href="{% url 'removecontact' call.id %}" class="btn btn-outline-danger btn-sm rounded-11" data-toggle="tooltip" data-original-title="Delete" onclick="return( confirm('Are You Sure to want to delete this contact') )">
                                                 <i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16">
                                                     <path d="M0 0h24v24H0V0z" fill="none"/>
                                                     <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z"/>

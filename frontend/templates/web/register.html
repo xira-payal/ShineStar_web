@@ -3,7 +3,20 @@
 {% block title %}Register Page{% endblock%}
 
 {% block content %}
-
+<style>
+  .eye-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .eye-icon i {
+    font-size: 18px;
+  }
+  
+</style>
       <!-- contactinfo-section -->
       <section class="contactinfo-section contact-page-section">
         <div class="auto-container">
@@ -34,6 +47,9 @@
                         type="text"
                         name="username"
                         placeholder="Username*"
+                        pattern="[A-Za-z]+"
+                        title="Only characters are allowed"
+                        required
                       />
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
@@ -47,16 +63,27 @@
                       <input
                         type="password"
                         name="password"
+                        id="password"
                         placeholder="Password *"
+                        min="4" max="8"
                       />
+                      <span toggle="#password" class="eye-icon toggle-password">
+                        <i class="far fa-eye"></i>
+                      </span>
                     </div>
+                    
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                        <input
-                          type="password"
-                          name="confirm_password"
-                          placeholder="Confirm Password *"
-                        />
-                      </div>
+                      <input
+                        type="password"
+                        name="confirm_password"
+                        id="confirm_password"
+                        placeholder="Confirm Password *"
+                        min="4" max="8"
+                      />
+                      <span toggle="#confirm_password" class="eye-icon toggle-confirm-password">
+                        <i class="far fa-eye"></i>
+                      </span>
+                    </div>
                     <div
                       class="col-lg-12 col-md-12 col-sm-12 form-group message-btn centred"
                     >
@@ -76,4 +103,32 @@
         </div>
       </section>
       <!-- contactinfo-section end -->
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const togglePassword = document.querySelector('.toggle-password');
+          const password = document.querySelector('#password');
+      
+          togglePassword.addEventListener('click', function () {
+            togglePasswordVisibility(password, togglePassword);
+          });
+      
+          const toggleConfirmPassword = document.querySelector('.toggle-confirm-password');
+          const confirmPassword = document.querySelector('#confirm_password');
+      
+          toggleConfirmPassword.addEventListener('click', function () {
+            togglePasswordVisibility(confirmPassword, toggleConfirmPassword);
+          });
+      
+          function togglePasswordVisibility(inputField, toggleElement) {
+            const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+            inputField.setAttribute('type', type);
+      
+            // Change the eye icon
+            const eyeIcon = toggleElement.querySelector('i');
+            eyeIcon.className = type === 'password' ? 'far fa-eye' : 'far fa-eye-slash';
+          }
+        });
+      </script>
+      
 {% endblock %}

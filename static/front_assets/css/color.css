@@ -198,7 +198,7 @@
 }
 
 .news-block-one .inner-box .image-box .post-date{
-  background: #ad1f24ab;
+  background: var(--d-red);
 }
 
 .news-block-one .inner-box .lower-content .inner .category i{

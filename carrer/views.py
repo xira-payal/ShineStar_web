@@ -17,8 +17,16 @@ def validate_file_extension(value):
     allowed_extension = ['pdf','doc','docx','odt','txt']
     if ext.lower() not in allowed_extension:
          raise ValidationError(f'Only PDF, DOC, DOCX, TXT, or ODT files are allowed.')
-    
+
+def validate_phone_number(value):
+    phone_number = str(value)  # Convert the value to a string for length check
+    min_length = 5
+    max_length = 20
+
+    if not phone_number.isdigit() or not (min_length <= len(phone_number) <= max_length):
+        raise ValidationError('Phone number must be a numeric value with length between 5 and 10 digits.')
 # End Validation Sections
+
 @login_required(login_url='admin_login')
 @user_passes_test(lambda user: user.is_superuser)
 def carrer_page(request):
@@ -45,6 +53,7 @@ def add_carrer_page(request):
             Required(firstname,'firstname')
             Required(lastname,'lastname')
             Required(email,'email')
+            validate_phone_number(phone),'phone'
             validate_file_extension(files)
             carrer = Carrer(firstname=firstname,lastname=lastname,email=email,phone=phone,address=address,message=message,education=education,experiance=experiance,files=files)
             carrer.save()

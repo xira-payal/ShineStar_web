@@ -58,7 +58,7 @@
                                       <input type="email" name="email" placeholder="Email*" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Enter a valid email address."  >
                                   </div>
                                   <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                      <input type="number" name="phone" placeholder="Phone" inputmode="none" pattern="\d+" title="Please enter a valid number.">
+                                      <input type="number" name="phone" placeholder="Phone" inputmode="none" min="5" max="15" pattern="\d+" title="Please enter a valid number.">
                                   </div>
                                   <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                       <input type="text" name="address" placeholder="Address (eg: No,Street,City,State,Zip)" >
@@ -87,6 +87,7 @@
                                           </div>
                                           <input class="form-control" name="files" accept="application/pdf,application/doc,application/docx,application/txt,application/odt" type="file" id="formFile">
                                       </div>
+                                      <span class="text-info">* pdf, doc, docx, txt, Odt,  *</span>
                                   </div>
                               </div>
                       </div>

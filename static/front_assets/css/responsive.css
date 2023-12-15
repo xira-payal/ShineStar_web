@@ -805,14 +805,11 @@
     margin-bottom: 30px;
   }
 
-  
-
   .service-details-content .content-three .tab-btns{
     margin-bottom: 30px;
   }
   .current-opening.growth-section .service-details-content .content-three .tab-btns{
     margin-bottom: 0px;
-    padding: 20px;
   }
 
   .service-sidebar{
@@ -1800,5 +1797,40 @@
     font-size: 32px;
     line-height: 40px;
   }
+
+}
+
+@media only screen and (max-width: 1280px) and (min-width: 800px)  {
+  .banner-carousel .content-box h1{
+    font-size: 40px;
+    line-height: 53px;
+  }
+  #image_block_1 .image-box .image-2 {
+    position: absolute;
+    left: 18px;
+    bottom: 0px;
+  }
+  #image_block_1 .image-box .image-1 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    width: 499px;
+    left: -32px;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  #image_block_1 .image-box .image-1 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    width: 364px;
+    left: -15px;
+    top: -240px;
+  }
+  #image_block_1 .image-box .image-2 {
+    position: relative;
+    text-align: center;
+    margin-top: -318px;
+}
 
 }

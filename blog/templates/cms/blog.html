@@ -1,5 +1,5 @@
 {% extends "cms/base.html" %} 
-{% block title %}blog Page{% endblock%}
+{% block title %}Blog Page{% endblock%}
 {% block content %}
 <div class="inner-body">
     <!-- Page Header -->
@@ -11,15 +11,19 @@
     <!-- End Page Header -->
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" role="alert">
-                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                        <span aria-hidden="true"><i class="fe fe-x-circle"></i></span></button>
-                        <strong>Your message :</strong> {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 mx-auto">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                                <span aria-hidden="true"><i class="fe fe-x-circle"></i></span></button>
+                                <strong>Your message :</strong> {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
             <div class="card" id="transcation-crypto-1">
                 <div class="card-header bd-b-0">
                     <div class="d-flex justify-content-between">
@@ -28,13 +32,13 @@
                         </div>
                         <p>
                             <a href="{% url 'addblog' %}" class="btn btn-outline-primary btn-xl rounded-11 mr-2" data-toggle="tooltip" data-original-title="add">
-                                <span>Add Item</span>
+                                <span>Add Blog</span>
                             </a>
                         </p>
                     </div>
                 </div>
                 {% if page_obj %}
-                <div class="card-body p-0 pt-1">
+                <div class="card-body p-0 pt-1 pb-5">
                     <div class="">
                         <div class="table-responsive">
                             <table class="table text-nowrap" >
@@ -91,7 +95,7 @@
         </div>
     </div>
     {% if page_obj %}
-   <div class="row">
+   <div class="row pb-5">
     <div class="card-body col-lg-12 d-flex justify-content-center align-items-center">
         <div class="text-wrap">
             <div class="example bg-white">

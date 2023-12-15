@@ -8,5 +8,7 @@ cms_patterns = [
     path('remove/<int:pk>/', views.delete_blog_page, name='removeblog'),
 ]
 
-urlpatterns = [] + cms_patterns
+urlpatterns = [
+    # path('blog_view/<slug:slug>/', views.blog_view, name='frontblog'), 
+] + cms_patterns
 

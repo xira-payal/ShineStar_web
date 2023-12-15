@@ -4,6 +4,8 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import render, get_object_or_404
+from django.utils.text import slugify
 import os
 # Create your views here.
 
@@ -85,7 +87,6 @@ def update_blog_page(request, pk):
 
     return render(request, 'cms/blog_update.html', {'blogs': blog})
 
-
 @login_required(login_url='admin_login')
 @user_passes_test(lambda user: user.is_superuser)
 def delete_blog_page(request, pk):
@@ -93,3 +94,7 @@ def delete_blog_page(request, pk):
     blog.delete()
     messages.warning(request, "Blog deleted successfully")
     return redirect('blog')
+
+# def blog_view(request,slug):
+#     blog = get_object_or_404(Blogs, title__exact=slugify(slug))
+#     return render(request, 'web/blog_view.html', {'blog': blog})

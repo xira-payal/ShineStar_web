@@ -41,6 +41,20 @@
 	<!-- Switcher css-->
 	<link href="{% static 'assets/switcher/css/switcher.css' %}" rel="stylesheet">
 	<link href="{% static 'assets/switcher/demo.css' %}" rel="stylesheet">
+	<style>
+		.password-input {
+			position: relative;
+		}
+		
+		.toggle-password {
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			transform: translateY(-50%);
+			cursor: pointer;
+			color: #555;
+		}
+	</style>
 
 </head>
 
@@ -79,15 +93,25 @@
 										<p class="mb-4 text-muted tx-13 ml-0 text-left">Signin to Continue in our website</p>
 										<div class="form-group text-left">
 											<label class="">Username</label>
-											<input class="form-control rounded-11" name="username" placeholder="username" type="text">
+											<input class="form-control rounded-11" name="username" placeholder="Username" type="text">
 										</div>
 										<div class="form-group text-left">
-											<label class="">Password</label>
-											<input class="form-control rounded-11" name="password" placeholder="password" type="password">
+											<label for="password">Password</label>
+											<div class="password-input">
+												<input type="password" id="password" name="password" class="form-control rounded-11" placeholder="Password">
+												<span id="togglePassword" class="toggle-password" onclick="togglePasswordVisibility()">
+													<i class="fa fa-eye" aria-hidden="true"></i>
+												</span>
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-12 mt-3">
 												<button type="submit" class="btn btn-primary rounded-11 btn-block">SIGN IN</button>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 mt-3">
+												<a href="{% url 'admin_forgotPassword' %}" >Forgot Password</a>
 											</div>
 										</div>
 									</form>
@@ -107,5 +131,21 @@
 		<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
 		<!-- Custom js -->
 		<script src="{% static 'assets/js/custom.js' %}"></script>
+		<script>
+			function togglePasswordVisibility() {
+				var passwordInput = document.getElementById("password");
+				var toggleIcon = document.getElementById("togglePassword").querySelector("i");
+			
+				if (passwordInput.type === "password") {
+					passwordInput.type = "text";
+					toggleIcon.classList.remove("fa-eye");
+					toggleIcon.classList.add("fa-eye-slash");
+				} else {
+					passwordInput.type = "password";
+					toggleIcon.classList.remove("fa-eye-slash");
+					toggleIcon.classList.add("fa-eye");
+				}
+			}
+		</script>
 	</body>
 </html>
