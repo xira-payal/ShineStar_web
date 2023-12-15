@@ -76,6 +76,7 @@ docs/_build/
 
 # PyBuilder
 target/
+# git remote set-url origin https://github.com/xira-payal/ShineStar_web.git
 
 
 ### Django ###
